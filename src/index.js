@@ -84,21 +84,21 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
     return response.status(404).json({ error: "todo not found!" })
   }
 
-  // atualiza somente o todo que tiver o id igual o passado na rota
-  user.todos.forEach(todo => {
-    if (todo.id === id) {
-      todo.title = title
-      todo.deadline = new Date(deadline)
-    }
-  })
-
-  /*
-  Outra forna de fazer
-
+  // Atualiza somente o todo que tiver o id igual o passado na rota
   const todo = user.todos.find(todo => todo.id === id)
 
   todo.title = title
-  todo.deadeline = new Date(deadline)
+  todo.deadline = new Date(deadline)
+
+  /*
+  Outra forma de fazer
+
+  user.todos.forEach(todo => {
+  if (todo.id === id) {
+    todo.title = title
+    todo.deadline = new Date(deadline)
+  }
+  })
   */
 
   return response.status(200).send()
@@ -116,18 +116,17 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
   }
 
   // Atualiza somente o todo que tiver o id igual o passado na rota
+  const todo = user.todos.find(todo => todo.id === id)
+
+  todo.done = true
+
+  /*
+  Outra forna de fazer
   user.todos.forEach(todo => {
     if (todo.id === id) {
       todo.done = true
     }
   })
-
-  /*
-  Outra forna de fazer
-
-  const todo = user.todos.find(todo => todo.id === id)
-
-  todo.done = true
   */
 
   return response.status(200).send()
