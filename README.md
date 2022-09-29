@@ -25,6 +25,8 @@
 - [x] Should not be able to mark a non existing todo as done
 - [x] Should not be able to delete a non existing todo
 
+<img src="/assets/images/proejto.png" />
+
 # Install
 
 Clone this repository and install it dependencies with this command:
